@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Search = () => {
+const Search = ({ onSubmit }) => {
   const placeholder = 'Search for city/region here';
 
   return (
-    <form>
+    <form onSubmit={e => onSubmit(e)}>
       <input
         placeholder={placeholder}
         name="searchString"
