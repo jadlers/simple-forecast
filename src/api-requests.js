@@ -1,4 +1,5 @@
 import mockSearchRes from './mock/search.json';
+import mockForecast from './mock/forecast.json';
 
 /**
  * @async
@@ -7,4 +8,11 @@ import mockSearchRes from './mock/search.json';
  */
 export const searchLocation = async name => {
   return mockSearchRes;
+};
+
+/**
+ * @param {number} woeid id for the city to get forecast for
+ */
+export const fiveDayForecast = async woeid => {
+  return mockForecast;
 };
