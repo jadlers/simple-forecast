@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { searchLocation } from './api-requests';
 
 import Search from './search';
+import City from './city';
 
 class App extends Component {
   state = {
@@ -20,7 +21,12 @@ class App extends Component {
   }
 
   render() {
-    return <Search onSubmit={e => this.newSearch(e)} />;
+    return (
+      <div>
+        <Search onSubmit={e => this.newSearch(e)} />
+        {this.state.cities.map(data => <City key={data.woeid} data={data} />)}
+      </div>
+    );
   }
 }
 
