@@ -1,29 +1,26 @@
 import React, { Component } from 'react';
-import Search from './search';
+import { searchLocation } from './api-requests';
 
-const BASE_URL = 'https://www.metaweather.com/api/location/';
+import Search from './search';
 
 class App extends Component {
   state = {
-    searchResults: [],
+    cities: [],
   };
 
   async newSearch(e) {
     e.preventDefault();
     try {
       const searchString = e.target[0].value;
-      const url = `${BASE_URL}search/?query=${searchString}`;
-      const res = await fetch(url);
-      const searchResult = await res.json();
-      console.log(searchResult); // TODO: Remove
-      this.setState({ searchResult: searchResult.results });
+      const cities = await searchLocation(searchString);
+      this.setState({ cities });
     } catch (e) {
       console.log(e);
     }
   }
 
   render() {
-    return <Search onSubmit={this.newSearch} />;
+    return <Search onSubmit={e => this.newSearch(e)} />;
   }
 }
 
