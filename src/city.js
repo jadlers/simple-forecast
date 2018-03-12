@@ -9,10 +9,10 @@ class City extends Component {
     forecast: {},
   };
 
-  async toggleDetail(woeid) {
+  async toggleDetail(key) {
     let { expanded, forecast } = this.state;
     if (!expanded) {
-      forecast = await fiveDayForecast(woeid);
+      forecast = await fiveDayForecast(key);
     }
     this.setState({ forecast, expanded: !expanded });
   }
@@ -25,15 +25,18 @@ class City extends Component {
       <div>
         <div
           style={{ border: '1px solid black' }}
-          onClick={() => this.toggleDetail(data.woeid)}
+          onClick={() => this.toggleDetail(data.Key)}
         >
-          <h1>{data.title}</h1>
-          <h2>{data.location_type}</h2>
-          {data.woeid}
+          <h1>{data.EnglishName}</h1>
+          <h2>{data.Country.EnglishName}</h2>
+          {data.Key}
         </div>
         <div>
           {expanded &&
-            forecast.consolidated_weather.map(v => <Day key={v.id} data={v} />)}
+            forecast.DailyForecasts &&
+            forecast.DailyForecasts.map(v => (
+              <Day key={v.EpochDate} data={v} />
+            ))}
         </div>
       </div>
     );
