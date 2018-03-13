@@ -1,7 +1,5 @@
-import mockSearchRes from './mock/search.json';
-import mockForecast from './mock/forecast.json';
-
-const BASE_URL = 'https://www.metaweather.com';
+const BASE_URL = 'http://dataservice.accuweather.com';
+const API_KEY = ''; // Has to be set
 
 /**
  * @async
@@ -9,14 +7,48 @@ const BASE_URL = 'https://www.metaweather.com';
  * @return {Object[]} list of cities matching search string
  */
 export const searchLocation = async name => {
-  return mockSearchRes;
+  let searchResult = [];
+  try {
+    const url =
+      BASE_URL +
+      '/locations/v1/cities/search' +
+      `?apikey=${API_KEY}` +
+      `&q=${name}`;
+    const res = await fetch(url);
+    if (res.status !== 200) {
+      console.warn(`Non 200 response status (${res.status})`);
+      console.warn(res);
+    }
+    searchResult = res.status === 200 ? await res.json() : [];
+  } catch (error) {
+    console.error(error);
+  }
+
+  return searchResult;
 };
 
 /**
- * @param {number} woeid id for the city to get forecast for
+ * @param {number} key for the city to get forecast to
  */
-export const fiveDayForecast = async woeid => {
-  return mockForecast;
+export const fiveDayForecast = async key => {
+  let forecast = {};
+  try {
+    const metric = 'true';
+    const url =
+      `${BASE_URL}/forecasts/v1/daily/5day/${key}` +
+      `?apikey=${API_KEY}` +
+      `&metric=${metric}`;
+    const res = await fetch(url);
+    if (res.status !== 200) {
+      console.warn(`Non 200 response status (${res.status})`);
+      console.warn(res);
+    }
+    forecast = res.status === 200 ? await res.json() : [];
+  } catch (error) {
+    console.error(error);
+  }
+
+  return forecast;
 };
 
 /**

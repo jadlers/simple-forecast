@@ -24,7 +24,7 @@ class App extends Component {
     return (
       <div>
         <Search onSubmit={e => this.newSearch(e)} />
-        {this.state.cities.map(data => <City key={data.woeid} data={data} />)}
+        {this.state.cities.map(data => <City key={data.Key} data={data} />)}
       </div>
     );
   }
