@@ -52,9 +52,13 @@ export const fiveDayForecast = async key => {
 };
 
 /**
- * @param {string} abbr Abreviation of weather status
+ * @param {number} iconNumber AccuWeathers id for an icon
  * @return {string} an URL pointing to the image of the weather status given
  */
-export const weatherStateIcon = abbr => {
-  return `${BASE_URL}/static/img/weather/${abbr}.svg`;
+export const weatherStateIcon = iconNumber => {
+  return (
+    `https://developer.accuweather.com/sites/default/files/` +
+    (iconNumber > 9 ? iconNumber : '0' + iconNumber) +
+    `-s.png`
+  );
 };
