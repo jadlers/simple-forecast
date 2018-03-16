@@ -3,6 +3,13 @@
   margin-left: 5%;
 }
 
+@media (min-width: 1200px) {
+  .app {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
 @media (max-width: 500px) {
   .app {
     font-size: 0.9em;

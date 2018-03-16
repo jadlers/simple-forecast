@@ -1,7 +1,6 @@
 .searchForm {
   display: flex;
   margin: 1em 0;
-  /* TODO: Add max-width on desktop */
 }
 
 .searchForm > input,
@@ -39,4 +38,10 @@
 
 .searchForm > button:active {
   box-shadow: inset 0 0 2px black;
+}
+
+@media (min-width: 800px) {
+  .searchForm {
+    max-width: 500px;
+  }
 }

@@ -33,11 +33,16 @@
 }
 
 .city > .cityBody {
-  /* display: flex; On desktop only */
-  justify-content: space-around;
   padding-left: 10px;
 }
 
 .city > .cityBody > div {
   margin: 0.7em 0;
+}
+
+@media (min-width: 1000px) {
+  .city > .cityBody {
+    display: flex;
+    justify-content: space-around;
+  }
 }
