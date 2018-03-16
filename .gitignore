@@ -19,6 +19,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Environment file
+.env
+
 # Created by https://www.gitignore.io/api/macos,visualstudiocode,vim
 
 ### macOS ###

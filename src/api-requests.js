@@ -1,5 +1,5 @@
 const BASE_URL = 'https://dataservice.accuweather.com';
-const API_KEY = ''; // Has to be set
+const API_KEY = process.env.REACT_APP_ACCUWEATHER_API_KEY;
 
 /**
  * @async
