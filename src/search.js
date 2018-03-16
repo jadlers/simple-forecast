@@ -5,11 +5,11 @@ const Search = ({ onSubmit }) => {
   const placeholder = 'Search for a city';
 
   return (
-    <form className="searchForm" onSubmit={e => onSubmit(e)}>
+    <form className="searchForm" action="#" onSubmit={e => onSubmit(e)}>
       <input
         placeholder={placeholder}
         name="searchString"
-        type="text"
+        type="search"
         required
       />
       <button type="submit">

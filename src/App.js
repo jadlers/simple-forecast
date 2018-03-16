@@ -11,6 +11,7 @@ class App extends Component {
   };
 
   async newSearch(e) {
+    document.activeElement.blur();
     e.preventDefault();
     try {
       const searchString = e.target[0].value;
