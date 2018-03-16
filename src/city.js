@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+
 import { fiveDayForecast } from './api-requests';
+import expandIcon from './assets/expand-icon.svg';
+import './city.css';
 
 import Day from './day.js';
 
@@ -22,18 +25,22 @@ class City extends Component {
     const { expanded, forecast } = this.state;
 
     return (
-      <div>
-        <div
-          style={{ border: '1px solid black' }}
-          onClick={() => this.toggleDetail(data.Key)}
-        >
-          <h1>{data.EnglishName}</h1>
-          <h2>{data.Country.EnglishName}</h2>
-          {data.Key}
+      <div className="city">
+        <div className="cityHeader" onClick={() => this.toggleDetail(data.Key)}>
+          <img
+            src={expandIcon}
+            className={expanded ? 'cityExpanded' : ''}
+            alt=">"
+          />
+          <div>
+            <p className="city-name">{data.EnglishName}</p>
+            <p>
+              {data.AdministrativeArea.EnglishName}, {data.Country.EnglishName}
+            </p>
+          </div>
         </div>
-        <div>
+        <div className="cityBody">
           {expanded &&
-            forecast.DailyForecasts &&
             forecast.DailyForecasts.map(v => (
               <Day key={v.EpochDate} data={v} />
             ))}
