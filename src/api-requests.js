@@ -1,4 +1,4 @@
-const BASE_URL = 'http://dataservice.accuweather.com';
+const BASE_URL = 'https://dataservice.accuweather.com';
 const API_KEY = ''; // Has to be set
 
 /**
