@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { searchLocation } from './api-requests';
+import './App.css';
 
 import Search from './search';
 import City from './city';
@@ -22,7 +23,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="app">
         <Search onSubmit={e => this.newSearch(e)} />
         {this.state.cities.map(data => <City key={data.Key} data={data} />)}
       </div>
