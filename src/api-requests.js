@@ -4,24 +4,29 @@ const API_KEY = process.env.REACT_APP_ACCUWEATHER_API_KEY;
 /**
  * @async
  * @param {string} name name of city to search for
- * @return {Object[]} list of cities matching search string
+ * @return {{ok: boolean, cities: []} list of cities matching search string
  */
 export const searchLocation = async name => {
-  let searchResult = [];
+  let searchResult = { cities: [] };
+
+  const url =
+    BASE_URL +
+    '/locations/v1/cities/search' +
+    `?apikey=${API_KEY}` +
+    `&q=${name}`;
+
   try {
-    const url =
-      BASE_URL +
-      '/locations/v1/cities/search' +
-      `?apikey=${API_KEY}` +
-      `&q=${name}`;
     const res = await fetch(url);
-    if (res.status !== 200) {
-      console.warn(`Non 200 response status (${res.status})`);
-      console.warn(res);
+    if (res.ok) {
+      const parsedRes = await res.json();
+      searchResult.cities = parsedRes;
+      searchResult.ok = true;
+    } else {
+      searchResult.ok = false;
     }
-    searchResult = res.status === 200 ? await res.json() : [];
-  } catch (error) {
-    console.error(error);
+  } catch (e) {
+    console.error(e);
+    searchResult.ok = false;
   }
 
   return searchResult;
