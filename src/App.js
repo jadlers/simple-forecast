@@ -12,11 +12,13 @@ class App extends Component {
       show: false,
       message: '',
     },
+    searching: false,
   };
 
   async newSearch(e) {
     document.activeElement.blur();
     e.preventDefault();
+    this.setState({ searching: true });
     const searchString = e.target[0].value;
     const { ok, cities } = await searchLocation(searchString);
     if (ok) {
@@ -25,7 +27,7 @@ class App extends Component {
           `Could not find any cities when searching for ${searchString}`
         );
       } else {
-        this.setState({ cities });
+        this.setState({ cities, searching: false });
       }
     } else {
       const errorMessage = `An error occurred while searching.
@@ -36,7 +38,7 @@ class App extends Component {
   }
 
   showMessage(message, time = 5000) {
-    this.setState({ info: { show: true, message } });
+    this.setState({ searching: false, info: { show: true, message } });
     setTimeout(
       () => this.setState({ info: { show: false, message: '' } }),
       time
@@ -44,10 +46,10 @@ class App extends Component {
   }
 
   render() {
-    const { cities, info } = this.state;
+    const { cities, info, searching } = this.state;
     return (
       <div className="app">
-        <Search onSubmit={e => this.newSearch(e)} />
+        <Search onSubmit={e => this.newSearch(e)} searching={searching} />
         {info.show && <p className="tmpMessage">{info.message}</p>}
         {cities.map(data => <City key={data.Key} data={data} />)}
       </div>

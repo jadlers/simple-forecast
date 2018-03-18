@@ -1,7 +1,7 @@
 import React from 'react';
 import './search.css';
 
-const Search = ({ onSubmit }) => {
+const Search = ({ onSubmit, searching }) => {
   const placeholder = 'Search for a city';
 
   return (
@@ -12,8 +12,9 @@ const Search = ({ onSubmit }) => {
         type="search"
         required
       />
-      <button type="submit">
+      <button type="submit" className={searching ? 'searching' : ''}>
         <span className="fas fa-search fa-2x" />
+        <span className="fas fa-sync fa-2x" />
       </button>
     </form>
   );
