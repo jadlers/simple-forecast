@@ -21,6 +21,10 @@ Info:
 - You also can use some css frameworks or boilerplates.
 - We'll make a cross-browser testing, so check it.
 
+## First design sketch
+
+![first-design-sketch](https://user-images.githubusercontent.com/16165462/37570630-470edbf4-2af2-11e8-8a44-2071a9406e1a.jpg)
+
 ## Create react app
 
 This project was bootstrapped with
