@@ -44,12 +44,12 @@ class App extends Component {
   }
 
   render() {
-    const { info } = this.state;
+    const { cities, info } = this.state;
     return (
       <div className="app">
         <Search onSubmit={e => this.newSearch(e)} />
         {info.show && <p className="tmpMessage">{info.message}</p>}
-        {this.state.cities.map(data => <City key={data.Key} data={data} />)}
+        {cities.map(data => <City key={data.Key} data={data} />)}
       </div>
     );
   }
